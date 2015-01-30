@@ -6,19 +6,36 @@
     using Unic.ScriptLogger.Authorization;
     using Unic.ScriptLogger.Services;
 
+    /// <summary>
+    /// Mvc controller for the script logger
+    /// </summary>
     public class ScriptLoggerController : Controller
     {
+        /// <summary>
+        /// The log file service
+        /// </summary>
         private readonly ILogFileService logFileService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScriptLoggerController"/> class.
+        /// </summary>
         public ScriptLoggerController() : this(new LogFileService())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScriptLoggerController"/> class.
+        /// </summary>
+        /// <param name="logFileService">The log file service.</param>
         public ScriptLoggerController(ILogFileService logFileService)
         {
             this.logFileService = logFileService;
         }
 
+        /// <summary>
+        /// Index action of the controller, called when controller is called without any other action specified.
+        /// </summary>
+        /// <returns>The newest logfile configured in the config file.</returns>
         [AdministratorOnly]
         public ActionResult Index()
         {
@@ -28,6 +45,11 @@
             return this.Content(content, "text/plain");
         }
 
+        /// <summary>
+        /// Gets the content of a specific logfile.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns>Content of the specified logfile.</returns>
         [AdministratorOnly]
         public ActionResult File(string fileName)
         {
@@ -39,6 +61,10 @@
             return this.Content(content, "text/plain");
         }
 
+        /// <summary>
+        /// Lists all available log files.
+        /// </summary>
+        /// <returns>List of available log files.</returns>
         [AdministratorOnly]
         public ActionResult ListFiles()
         {
@@ -47,6 +73,10 @@
             return this.Content(content.Replace("{files}", files), "text/plain");
         }
 
+        /// <summary>
+        /// Get the help text with available commands for the module.
+        /// </summary>
+        /// <returns>Help text with available commands.</returns>
         [AdministratorOnly]
         public ActionResult Help()
         {
