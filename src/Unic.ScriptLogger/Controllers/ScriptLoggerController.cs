@@ -3,6 +3,7 @@
     using System;
     using System.Net;
     using System.Web.Mvc;
+    using Unic.ScriptLogger.Authorization;
     using Unic.ScriptLogger.Services;
 
     public class ScriptLoggerController : Controller
@@ -18,6 +19,7 @@
             this.logFileService = logFileService;
         }
 
+        [AdministratorOnly]
         public ActionResult Index()
         {
             var content = this.logFileService.GetLogFileContent();
@@ -26,6 +28,7 @@
             return this.Content(content, "text/plain");
         }
 
+        [AdministratorOnly]
         public ActionResult File(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -36,6 +39,7 @@
             return this.Content(content, "text/plain");
         }
 
+        [AdministratorOnly]
         public ActionResult ListFiles()
         {
             var files = string.Join(Environment.NewLine, this.logFileService.GetAllFiles());
@@ -43,6 +47,7 @@
             return this.Content(content.Replace("{files}", files), "text/plain");
         }
 
+        [AdministratorOnly]
         public ActionResult Help()
         {
             return this.Content(this.logFileService.GetFileContent("/sitecore modules/Web/ScriptLogger/Help.txt"), "text/plain");
