@@ -1,0 +1,3 @@
+﻿The following log files are available. To load a specific log file go to the url /scriptlogger/file/<filename>.
+
+{files}
