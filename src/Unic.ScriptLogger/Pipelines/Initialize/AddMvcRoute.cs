@@ -24,7 +24,7 @@
         /// <param name="routes">The routes collection.</param>
         private static void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapRoute("ScriptLoggerRoute", "scriptlogger/{action}/{filename}", new { controller = "ScriptLogger", action = "Index", filename = UrlParameter.Optional });
+            routes.MapRoute("ScriptLoggerRoute", "scriptlogger/{action}", new { controller = "ScriptLogger", action = "Index" });
         }
     }
 }

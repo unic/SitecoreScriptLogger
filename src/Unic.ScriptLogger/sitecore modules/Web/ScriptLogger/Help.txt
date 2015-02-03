@@ -1,9 +1,9 @@
 ﻿This is the help for the Sitecore ScriptLogger module. Currently the following commands/urls are available:
 
-/scriptlogger                    shows the newest default log file, this is configured within the config file
-/scriptlogger/help               shows this help page
-/scriptlogger/listfiles          list all available files
-/scriptlogger/file/<filename>    get the content of a specific file
+/scriptlogger                         shows the newest default log file, this is configured within the config file
+/scriptlogger/help                    shows this help page
+/scriptlogger/listfiles	              list all available files
+/scriptlogger/file?name=<filename>    get the content of a specific file
 
 NOTE
 ----

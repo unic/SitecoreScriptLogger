@@ -48,14 +48,14 @@
         /// <summary>
         /// Gets the content of a specific logfile.
         /// </summary>
-        /// <param name="fileName">Name of the file.</param>
+        /// <param name="name">Name of the file.</param>
         /// <returns>Content of the specified logfile.</returns>
         [AdministratorOnly]
-        public ActionResult File(string fileName)
+        public ActionResult File(string name)
         {
-            if (string.IsNullOrWhiteSpace(fileName)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (string.IsNullOrWhiteSpace(name)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var content = this.logFileService.GetLogFileContent(fileName);
+            var content = this.logFileService.GetLogFileContent(name);
             if (string.IsNullOrWhiteSpace(content)) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 
             return this.Content(content, "text/plain");
